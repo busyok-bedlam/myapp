@@ -1,7 +1,7 @@
 {
   "name": "iterator",
   "version": "0.1.0",
-  "homepage" : "http://busyok-bedlam.github.io/myapp",
+  "homepage": "http://busyok-bedlam.github.io/myapp",
   "private": true,
   "dependencies": {
     "react": "^15.6.1",
@@ -15,5 +15,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "redux": "^3.7.2"
   }
 }

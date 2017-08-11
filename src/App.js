@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css'
-import Store from "./store";
-import createStore from './createstore'
+
+import {createStore} from 'redux'
 //Store settings
 const initialState = {count: 0}
 const updateState = (state,action)=>{
@@ -49,11 +49,18 @@ reset(){
     let count = store2.getState().count;
     return (
       <div className="App">
+        <div className="table">{count}</div>
+        <div className="terminal">
+          <button className="minus" onClick={this.decrement}>-</button>
+          <button className="reset" onClick={this.reset}>R</button>
+          <button className="plus" onClick={this.increment} >+</button>
+        </div>
+        <div className="regulate">
+          <input ref="amount" defaultValue="1" />
+        </div>
 
-        <button className="minus" onClick={this.decrement}>-</button>
-        <button className="reset" onClick={this.reset}>R</button>
-        <span className="table">{count}</span>
-        <button className="plus" onClick={this.increment} >+</button>
+
+
       </div>
     );
   }
