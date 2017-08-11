@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css'
 import Store from "./store";
+import createStore from './createstore'
 //Store settings
 const initialState = {count: 0}
 const updateState = (state,action)=>{
@@ -15,8 +16,8 @@ const updateState = (state,action)=>{
 }
 const incrementAction = {type: "INCREMENT",amount:1};
 const decrementAction = {type: "DECREMENT",amount:1};
-let store = new Store(updateState,initialState);
-
+//let store = new Store(updateState,initialState);
+let store2 = createStore(updateState,initialState)
 
 
 
@@ -29,20 +30,21 @@ constructor(props){
   this.decrement = this.decrement.bind(this);
   }
 componentDidMount(){
-  store.subscribe(()=>this.forceUpdate())
+  store2.subscribe(()=>this.forceUpdate())
 }
 increment(){
-  store.update(incrementAction);
+  store2.dispatch(incrementAction);
 }
 decrement(){
-  store.update(decrementAction);
+  store2.dispatch(decrementAction);
 }
   render() {
+    let count = store2.getState().count;
     return (
       <div className="App">
-      
+
         <button className="minus" onClick={this.decrement}>-</button>
-        <span className="table">{store.state.count}</span>
+        <span className="table">{count}</span>
         <button className="plus" onClick={this.increment} >+</button>
       </div>
     );
