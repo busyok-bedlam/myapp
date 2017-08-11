@@ -10,12 +10,15 @@ const updateState = (state,action)=>{
     return {count: state.count + action.amount};
     case "DECREMENT":
     return {count: state.count - action.amount};
+    case "RESET":
+    return {count: 0}
     default:
       return state;
   }
 }
 const incrementAction = {type: "INCREMENT",amount:1};
 const decrementAction = {type: "DECREMENT",amount:1};
+const resetAction = {type: "RESET"};
 //let store = new Store(updateState,initialState);
 let store2 = createStore(updateState,initialState)
 
@@ -28,6 +31,7 @@ constructor(props){
   super(props);
   this.increment = this.increment.bind(this);
   this.decrement = this.decrement.bind(this);
+  this.reset = this.reset.bind(this);
   }
 componentDidMount(){
   store2.subscribe(()=>this.forceUpdate())
@@ -38,12 +42,16 @@ increment(){
 decrement(){
   store2.dispatch(decrementAction);
 }
+reset(){
+  store2.dispatch(resetAction);
+}
   render() {
     let count = store2.getState().count;
     return (
       <div className="App">
 
         <button className="minus" onClick={this.decrement}>-</button>
+        <button className="reset" onClick={this.reset}>R</button>
         <span className="table">{count}</span>
         <button className="plus" onClick={this.increment} >+</button>
       </div>
