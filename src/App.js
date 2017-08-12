@@ -30,11 +30,11 @@ componentDidMount(){
   store.subscribe(()=>this.forceUpdate())
 }
 increment(){
-  let amount = parseInt(this.refs.amount.value);
+  let amount = parseInt(this.refs.amount.value || 1);
   store.dispatch(increment(amount));
 }
 decrement(){
-  let amount = parseInt(this.refs.amount.value);
+  let amount = parseInt(this.refs.amount.value || 1);
   store.dispatch(decrement(amount));
 }
 reset(){
@@ -53,8 +53,6 @@ reset(){
         <div className="regulate">
           <input id="pole" ref="amount" defaultValue="1"/>
         </div>
-
-
       </div>
     );
   }
